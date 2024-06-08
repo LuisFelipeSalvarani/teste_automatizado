@@ -1,0 +1,606 @@
+.content.control {
+  padding-top: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Inputs de Seleção de Jardins e Áreas */
+
+.content.control .form-group {
+  width: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.content.control .input-field {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.content.control .input-field.flex-5 {
+  flex: 5;
+}
+
+.content.control .input-field label {
+  margin: 0 0 5px 5px;
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  color: var(--verde-claro);
+}
+
+.content.control .input-field .input {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.content.control .input-field .input:focus {
+  transform: scale(1.01);
+}
+
+.content.control .input-field .input::placeholder {
+  color: var(--preto);
+  opacity: 0.8;
+}
+
+/* Conteiner dos controles e Gráficos */
+
+.content.control .control-box{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Coluna de Switches e Display de Erros */
+
+.content .control-column {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 30px;
+}
+
+/* Switches */
+
+.content .control-switches {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-100%);
+  transition: all 0.4s ease-in-out;
+}
+
+.content .control-box.visivel .control-switches {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.content .control-switches .control-switch {
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content .control-switches .control-switch .control-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--branco);
+}
+
+.content .control-switches .control-switch .control-label .icon {
+  font-size: 25px;
+}
+
+.content .control-switches .control-switch .switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+  margin: 10px;
+}
+
+.content .control-switches .control-switch .switch .switch-input {
+  display: none;
+}
+
+.content .control-switches .control-switch .switch .switch-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 24px;
+  border-radius: 34px;
+  /* background-color: #d90d1e; */
+  background-color: var(--vermelho);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.content .control-switches .control-switch .switch .switch-label::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--branco);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.content
+  .control-switches
+  .control-switch
+  .switch
+  .switch-input:checked
+  + .switch-label {
+  background-color: var(--verde-claro);
+}
+
+.content
+  .control-switches
+  .control-switch
+  .switch
+  .switch-input:checked
+  + .switch-label::before {
+  transform: translateX(16px);
+}
+
+/* Display de Erros */
+
+.content .control-column .error-display {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  white-space: nowrap;
+  background-color: rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-100%);
+  transition: all 0.4s ease-in-out 0.2s;
+}
+
+.content .control-box.visivel .error-display {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.error-display .icon {
+  display: inline-block;
+  color: #7e8794;
+  font-size: 40px;
+  margin: 0 20px;
+}
+
+.error-display .detalhes {
+  flex: 1;
+  display: block;
+  list-style: none;
+}
+
+.error-display .detalhes li {
+  display: block;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #7e8794;
+}
+
+.error-display .detalhes li:last-child span {
+  font-weight: normal;
+  color: rgba(230, 245, 255, 0.32);
+}
+
+.error-display .detalhes span {
+  display: block;
+  margin-top: -24px;
+  padding-right: 16px;
+  font-weight: 600;
+  text-align: right;
+  color: #c1c6cb;
+}
+
+.error-display .detalhes span.status {
+  color: var(--verde-claro);
+}
+
+.error-display .detalhes span.status::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background-color: currentColor;
+  border-radius: 50%;
+  margin-right: 4px;
+  margin-top: -2px;
+  vertical-align: middle;
+}
+
+/* Conteiner de gráficos */
+
+.content .info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 20px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.info-row:nth-child(1) .info-item:nth-child(1) {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: all 0.4s ease-in-out;
+}
+
+.control-box.visivel .info-row:nth-child(1) .info-item:nth-child(1) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.info-row:nth-child(1) .info-item:nth-child(2) {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: all 0.4s ease-in-out;
+}
+
+.control-box.visivel .info-row:nth-child(1) .info-item:nth-child(2) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.info-row:nth-child(1) .info-item:nth-child(3) {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: all 0.4s ease-in-out;
+}
+
+.control-box.visivel .info-row:nth-child(1) .info-item:nth-child(3) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.info-row:nth-child(2) .info-item:nth-child(1) {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: all 0.5s ease-in-out 0.2s;
+}
+
+.control-box.visivel .info-row:nth-child(2) .info-item:nth-child(1) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.info-row:nth-child(2) .info-item:nth-child(2) {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: all 0.5s ease-in-out 0.2s;
+}
+
+.control-box.visivel .info-row:nth-child(2) .info-item:nth-child(2) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.info-row:nth-child(2) .info-item:nth-child(3) {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: all 0.5s ease-in-out 0.2s;
+}
+
+.control-box.visivel .info-row:nth-child(2) .info-item:nth-child(3) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* Gráficos de Umidade e Temperatura */
+
+.content .progress {
+  --progress-value: 0;
+  --progress-indicator-size: 270px;
+  --progress-size: 150px;
+  --progress-inner-size: calc(var(--progress-size) - 20px);
+  border: 5px solid var(--azul-claro);
+  filter: drop-shadow(1px 1px 3px rgb(0, 0, 0, 0.5));
+}
+
+.content .progress.solo {
+  border-color: var(--azul);
+}
+
+.content .progress.thermometer {
+  border-color: var(--laranja);
+}
+
+.content .progress::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  min-width: 8px;
+  min-height: 8px;
+  transform: translate(-50%, -50%);
+}
+
+.content .progress,
+.progress-inner {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  width: var(--progress-size);
+  height: var(--progress-size);
+  border-radius: var(--progress-size);
+  background-color: transparent;
+}
+
+.content .progress .progress-inner {
+  width: var(--progress-inner-size);
+  height: var(--progress-inner-size);
+  border: none;
+  margin: auto;
+  overflow: hidden;
+}
+
+.content .progress .progress-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  color: var(--branco);
+  text-align: center;
+  overflow: hidden;
+}
+
+.content .progress .progress-label p {
+  font-size: 200%;
+}
+
+.content .progress .progress-label strong {
+  font-size: 200%;
+}
+
+.content .progress .progress-label span {
+  font-size: 120%;
+}
+
+.content .progress .progress-inner .progress-indicator {
+  background: var(--azul-claro);
+  transform-origin: center center;
+  -webkit-animation: progress-wave-animation 8s linear infinite both;
+  animation: progress-wave-animation 8s linear infinite both;
+  position: absolute;
+  top: calc(100% - var(--progress-value) * 1%);
+  left: -50%;
+  right: 50%;
+  width: var(--progress-indicator-size);
+  height: var(--progress-indicator-size);
+  border-radius: calc(var(--progress-indicator-size) / 2.3);
+  transition: all 0.5s ease;
+}
+
+.content .progress.solo .progress-inner .progress-indicator {
+  background-color: var(--azul);
+}
+
+.content .progress.thermometer .progress-inner .progress-indicator {
+  background: var(--laranja);
+  -webkit-animation: none;
+  animation: none;
+  top: calc(100% - var(--progress-value) * 2%);
+  border-radius: 50%;
+}
+
+@-webkit-keyframes progress-wave-animation {
+  to,
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes progress-wave-animation {
+  to,
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Gráfico de Vazão */
+
+.content .vazao-container {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(1px 1px 3px rgb(0, 0, 0, 0.5));
+}
+
+.vazao-container .vazao-input {
+  display: none;
+}
+
+.vazao-container .indicator {
+  position: relative;
+  width: 150px;
+  height: 100px;
+}
+
+.vazao-container .corpo {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100px;
+  border-radius: 10px;
+  border: 3px solid var(--preto);
+  overflow: hidden;
+}
+
+.vazao-container .detalhe {
+  position: absolute;
+  left: -15px;
+  top: -10px;
+  width: 30px;
+  height: 120px;
+  border-radius: 5px;
+  border: 3px solid var(--azul-escuro);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.vazao-container .detalhe.right {
+  left: 90%;
+}
+
+.vazao-container .detalhe::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: linear-gradient(to bottom, #4F9CC0 35%, #214c60); */
+  background: var(--azul-claro);
+}
+
+.vazao-container .detalhe::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/172299/bubbles-mask.gif);
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+.corpo .fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: linear-gradient(to bottom, #4F9CC0 35%, #214c60); */
+  background: var(--azul-claro);
+}
+
+.corpo .fill::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/172299/bubbles-mask.gif);
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+.vazao-container .vazao-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  color: var(--branco);
+  text-align: center;
+  overflow: hidden;
+}
+
+.vazao-label p {
+  font-size: 200%;
+}
+
+.vazao-label .vazao {
+  font-size: 200%;
+}
+
+.vazao-label .unit-vazao {
+  font-size: 120%;
+}
+
+/* Indicadores de Motor e Válvula */
+
+.info-item .info-label {
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--branco);
+}
+
+.info-item.svg .info-label {
+  margin-bottom: 0;
+}
+
+.info-item.svg span {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--verde-claro);
+}
+
+.info-item svg {
+  width: 140px;
+  height: 140px;
+  filter: drop-shadow(1px 1px 3px rgb(0, 0, 0, 0.5));
+  transition: all 0.3s;
+}

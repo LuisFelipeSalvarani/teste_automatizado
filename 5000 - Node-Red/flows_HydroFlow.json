@@ -1,0 +1,725 @@
+[
+    {
+        "id": "bcfee132b0371b4f",
+        "type": "tab",
+        "label": "Irrigation Flow",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a302c5e1771881ca",
+        "type": "mqtt in",
+        "z": "bcfee132b0371b4f",
+        "name": "mqtt_in_status",
+        "topic": "irrigacao/status/#",
+        "qos": "1",
+        "datatype": "json",
+        "broker": "15ee646fec09b039",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1140,
+        "y": 140,
+        "wires": [
+            [
+                "7b8ac2f3c7f9bb54"
+            ]
+        ]
+    },
+    {
+        "id": "aafccc79b35b6c11",
+        "type": "mqtt out",
+        "z": "bcfee132b0371b4f",
+        "name": "mqtt in cmd automatico",
+        "topic": "",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "15ee646fec09b039",
+        "x": 810,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "adada0e7f65fcfb7",
+        "type": "http in",
+        "z": "bcfee132b0371b4f",
+        "d": true,
+        "name": "http in cmd automatico",
+        "url": "/irrigacao/comando/:id_jardim/:id_area/cmd_automatico",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 1120,
+        "wires": [
+            [
+                "4543595698f55aa8"
+            ]
+        ]
+    },
+    {
+        "id": "4543595698f55aa8",
+        "type": "function",
+        "z": "bcfee132b0371b4f",
+        "name": "funcao cmd automatico",
+        "func": "// Extrair o ID do dispositivo e a área da URL\nvar jardim = msg.req.params.id_jardim;\nvar area = msg.req.params.id_area;\n\n// Tópico MQTT para comando automático\nvar topicoMQTT = \"irrigacao/comando/\" + jardim + \"/\" + area + \"/cmd_automatico\";\n\n// Armazenar o tópico MQTT no objeto de mensagem\nmsg.topic = topicoMQTT;\n\n// Encaminhar a mensagem para o próximo nó no fluxo (um nó MQTT Out)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 1120,
+        "wires": [
+            [
+                "aafccc79b35b6c11"
+            ]
+        ]
+    },
+    {
+        "id": "bbe1eea076579be6",
+        "type": "mqtt out",
+        "z": "bcfee132b0371b4f",
+        "name": "mqtt in cmd automatico",
+        "topic": "",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "15ee646fec09b039",
+        "x": 810,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "a1f8a13820ad803e",
+        "type": "http in",
+        "z": "bcfee132b0371b4f",
+        "d": true,
+        "name": "http in cmd valvula",
+        "url": "/irrigacao/comando/:id_jardim/:id_area/cmd_valvula",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 1200,
+        "wires": [
+            [
+                "8486e2ecfe668a41"
+            ]
+        ]
+    },
+    {
+        "id": "8486e2ecfe668a41",
+        "type": "function",
+        "z": "bcfee132b0371b4f",
+        "name": "funcao cmd valvula",
+        "func": "// Extrair o ID do dispositivo e a área da URL\nvar jardim = msg.req.params.id_jardim;\nvar area = msg.req.params.id_area;\n\n// Tópico MQTT para comando automático\nvar topicoMQTT = \"irrigacao/comando/\" + jardim + \"/\" + area + \"/cmd_valvula\";\n\n// Armazenar o tópico MQTT no objeto de mensagem\nmsg.topic = topicoMQTT;\n\n// Encaminhar a mensagem para o próximo nó no fluxo (um nó MQTT Out)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 1200,
+        "wires": [
+            [
+                "bbe1eea076579be6"
+            ]
+        ]
+    },
+    {
+        "id": "e570382c7303c1a8",
+        "type": "mqtt out",
+        "z": "bcfee132b0371b4f",
+        "name": "mqtt in cmd automatico",
+        "topic": "",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "15ee646fec09b039",
+        "x": 810,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "fdd6e367b10e003e",
+        "type": "http in",
+        "z": "bcfee132b0371b4f",
+        "d": true,
+        "name": "http in cmd motor",
+        "url": "/irrigacao/comando/:id_jardim/:id_area/cmd_motor",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 1280,
+        "wires": [
+            [
+                "8a0b5a6ed6d6e06d"
+            ]
+        ]
+    },
+    {
+        "id": "8a0b5a6ed6d6e06d",
+        "type": "function",
+        "z": "bcfee132b0371b4f",
+        "name": "funcao cmd motor",
+        "func": "// Extrair o ID do dispositivo e a área da URL\nvar jardim = msg.req.params.id_jardim;\nvar area = msg.req.params.id_area;\n\n// Tópico MQTT para comando automático\nvar topicoMQTT = \"irrigacao/comando/\" + jardim + \"/\" + area + \"/cmd_motor\";\n\n// Armazenar o tópico MQTT no objeto de mensagem\nmsg.topic = topicoMQTT;\n\n// Encaminhar a mensagem para o próximo nó no fluxo (um nó MQTT Out)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 1280,
+        "wires": [
+            [
+                "e570382c7303c1a8"
+            ]
+        ]
+    },
+    {
+        "id": "dc0e942cfd377140",
+        "type": "mqtt out",
+        "z": "bcfee132b0371b4f",
+        "name": "mqtt in cmd automatico",
+        "topic": "",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "15ee646fec09b039",
+        "x": 810,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "b7f8471bf1837edb",
+        "type": "http in",
+        "z": "bcfee132b0371b4f",
+        "d": true,
+        "name": "http in cmd temperatura",
+        "url": "/irrigacao/comando/:id_jardim/:id_area/cmd_controle_temperatura",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 1340,
+        "wires": [
+            [
+                "2dd134283171f818"
+            ]
+        ]
+    },
+    {
+        "id": "2dd134283171f818",
+        "type": "function",
+        "z": "bcfee132b0371b4f",
+        "name": "funcao cmd temperatura",
+        "func": "// Extrair o ID do dispositivo e a área da URL\nvar jardim = msg.req.params.id_jardim;\nvar area = msg.req.params.id_area;\n\n// Tópico MQTT para comando automático\nvar topicoMQTT = \"irrigacao/comando/\" + jardim + \"/\" + area + \"/cmd_controle_temperatura\";\n\n// Armazenar o tópico MQTT no objeto de mensagem\nmsg.topic = topicoMQTT;\n\n// Encaminhar a mensagem para o próximo nó no fluxo (um nó MQTT Out)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 1340,
+        "wires": [
+            [
+                "dc0e942cfd377140"
+            ]
+        ]
+    },
+    {
+        "id": "42c4783d00ba2137",
+        "type": "mqtt out",
+        "z": "bcfee132b0371b4f",
+        "name": "mqtt in cmd automatico",
+        "topic": "",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "15ee646fec09b039",
+        "x": 810,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "516f004fbc106878",
+        "type": "http in",
+        "z": "bcfee132b0371b4f",
+        "d": true,
+        "name": "http in cmd umidade",
+        "url": "/irrigacao/comando/:id_jardim/:id_area/cmd_controle_umidade",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 1420,
+        "wires": [
+            [
+                "72805363de46da46"
+            ]
+        ]
+    },
+    {
+        "id": "72805363de46da46",
+        "type": "function",
+        "z": "bcfee132b0371b4f",
+        "name": "funcao cmd umidade",
+        "func": "// Extrair o ID do dispositivo e a área da URL\nvar jardim = msg.req.params.id_jardim;\nvar area = msg.req.params.id_area;\n\n// Tópico MQTT para comando automático\nvar topicoMQTT = \"irrigacao/comando/\" + jardim + \"/\" + area + \"/cmd_controle_umidade\";\n\n// Armazenar o tópico MQTT no objeto de mensagem\nmsg.topic = topicoMQTT;\n\n// Encaminhar a mensagem para o próximo nó no fluxo (um nó MQTT Out)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 1420,
+        "wires": [
+            [
+                "42c4783d00ba2137"
+            ]
+        ]
+    },
+    {
+        "id": "f6cf885aeba9911e",
+        "type": "mqtt out",
+        "z": "bcfee132b0371b4f",
+        "name": "mqtt in cmd automatico",
+        "topic": "",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "15ee646fec09b039",
+        "x": 810,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "1da6e49b20dd903e",
+        "type": "http in",
+        "z": "bcfee132b0371b4f",
+        "d": true,
+        "name": "http in cmd volume",
+        "url": "/irrigacao/comando/:id_jardim/:id_area/cmd_controle_volume",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 1480,
+        "wires": [
+            [
+                "3d20b610e0686f88"
+            ]
+        ]
+    },
+    {
+        "id": "3d20b610e0686f88",
+        "type": "function",
+        "z": "bcfee132b0371b4f",
+        "name": "funcao cmd volume",
+        "func": "// Extrair o ID do dispositivo e a área da URL\nvar jardim = msg.req.params.id_jardim;\nvar area = msg.req.params.id_area;\n\n// Tópico MQTT para comando automático\nvar topicoMQTT = \"irrigacao/comando/\" + jardim + \"/\" + area + \"/cmd_controle_volume\";\n\n// Armazenar o tópico MQTT no objeto de mensagem\nmsg.topic = topicoMQTT;\n\n// Encaminhar a mensagem para o próximo nó no fluxo (um nó MQTT Out)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 1480,
+        "wires": [
+            [
+                "f6cf885aeba9911e"
+            ]
+        ]
+    },
+    {
+        "id": "d7817cb4cec3a718",
+        "type": "http in",
+        "z": "bcfee132b0371b4f",
+        "name": "http_in_parametro",
+        "url": "/irrigacao/parametro/:id_jardim/:id_area",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 340,
+        "wires": [
+            [
+                "ca3f5110253a140c"
+            ]
+        ]
+    },
+    {
+        "id": "b427fb200b691d3c",
+        "type": "mqtt out",
+        "z": "bcfee132b0371b4f",
+        "name": "mqtt_out_parametro",
+        "topic": "",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "15ee646fec09b039",
+        "x": 840,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "ca3f5110253a140c",
+        "type": "function",
+        "z": "bcfee132b0371b4f",
+        "name": "funcao_parametro",
+        "func": "// Extrair o ID do dispositivo e a área da URL\nvar jardim = msg.req.params.id_jardim;\nvar area = msg.req.params.id_area;\n\n// Tópico MQTT para comando automático\nvar topicoMQTT = \"irrigacao/parametro/\" + jardim + \"/\" + area;\n\n// Armazenar o tópico MQTT no objeto de mensagem\nmsg.topic = topicoMQTT;\n\n// Encaminhar a mensagem para o próximo nó no fluxo (um nó MQTT Out)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 340,
+        "wires": [
+            [
+                "b427fb200b691d3c"
+            ]
+        ]
+    },
+    {
+        "id": "21ce0fa3d8fedcdf",
+        "type": "mysql",
+        "z": "bcfee132b0371b4f",
+        "mydb": "80ac14c058233964",
+        "name": "MariaDB",
+        "x": 1540,
+        "y": 140,
+        "wires": [
+            [
+                "1f82264bb5e438a3"
+            ]
+        ]
+    },
+    {
+        "id": "1f82264bb5e438a3",
+        "type": "switch",
+        "z": "bcfee132b0371b4f",
+        "name": "",
+        "property": "payload.length",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1690,
+        "y": 140,
+        "wires": [
+            [
+                "d7b97e5c25485127"
+            ],
+            [
+                "7b46eb78bb345e7b"
+            ]
+        ]
+    },
+    {
+        "id": "7b8ac2f3c7f9bb54",
+        "type": "function",
+        "z": "bcfee132b0371b4f",
+        "name": "funcao_status",
+        "func": "// Recebe os dados do payload da mensagem MQTT\nvar dados = msg.payload;\nflow.set('dados', dados);\n\n\n// Constrói a consulta SQL para selecionar a linha com os mesmos ID_jardim e ID_area\nvar selectQuery = \"SELECT * FROM status_sistema WHERE id_jardim = ? AND id_area = ?\";\nvar selectValues = [dados.id_jardim, dados.id_area];\n\n// Define a consulta SQL e os valores no objeto de mensagem\nmsg.topic = selectQuery;\nmsg.payload = selectValues;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1360,
+        "y": 140,
+        "wires": [
+            [
+                "21ce0fa3d8fedcdf"
+            ]
+        ]
+    },
+    {
+        "id": "d7b97e5c25485127",
+        "type": "function",
+        "z": "bcfee132b0371b4f",
+        "name": "funcao status",
+        "func": "// Recebe os dados do payload da mensagem MQTT\nvar dados = flow.get('dados');\n\n// Constrói a consulta SQL de inserção\nvar insertQuery = \"INSERT INTO status_sistema (automatico, valvula, motor, controle_temperatura, controle_umidade, controle_consumo, id_jardim, id_area) VALUES (?, ?, ?, ?, ?, ?, ?, ?)\";\nvar insertValues = [\n    dados.automatico,\n    dados.valvula,\n    dados.motor, // Adiciona o campo motor\n    dados.controle_temperatura,\n    dados.controle_umidade,\n    dados.controle_consumo,\n    dados.id_jardim,\n    dados.id_area\n];\n\n// Define a consulta SQL e os valores no objeto de mensagem\nmsg.topic = insertQuery;\nmsg.payload = insertValues;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1890,
+        "y": 60,
+        "wires": [
+            [
+                "cb21b25e3b364600"
+            ]
+        ]
+    },
+    {
+        "id": "cb21b25e3b364600",
+        "type": "mysql",
+        "z": "bcfee132b0371b4f",
+        "mydb": "80ac14c058233964",
+        "name": "MariaDB",
+        "x": 2120,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cc0f38e078dd1796",
+        "type": "mqtt out",
+        "z": "bcfee132b0371b4f",
+        "name": "mqtt_out_comando",
+        "topic": "",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "15ee646fec09b039",
+        "x": 830,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "5cd933b0d54aeaea",
+        "type": "http in",
+        "z": "bcfee132b0371b4f",
+        "name": "http_in_comando",
+        "url": "/irrigacao/comando/:id_jardim/:id_area",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 140,
+        "wires": [
+            [
+                "ad602d1fbfb5fb22"
+            ]
+        ]
+    },
+    {
+        "id": "ad602d1fbfb5fb22",
+        "type": "function",
+        "z": "bcfee132b0371b4f",
+        "name": "funcao_comando",
+        "func": "// Extrair o ID do dispositivo e a área da URL\nvar jardim = msg.req.params.id_jardim;\nvar area = msg.req.params.id_area;\n\n// Tópico MQTT para comando automático\nvar topicoMQTT = \"irrigacao/comando/\" + jardim + \"/\" + area;\n\n// Armazenar o tópico MQTT no objeto de mensagem\nmsg.topic = topicoMQTT;\n\n// Encaminhar a mensagem para o próximo nó no fluxo (um nó MQTT Out)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 140,
+        "wires": [
+            [
+                "cc0f38e078dd1796"
+            ]
+        ]
+    },
+    {
+        "id": "7b46eb78bb345e7b",
+        "type": "function",
+        "z": "bcfee132b0371b4f",
+        "name": "funcao status",
+        "func": "// Recebe os dados do payload da mensagem MQTT\nvar dados = flow.get('dados');\n\n// Constrói a consulta SQL de update\nvar updateQuery = \"UPDATE status_sistema SET automatico = ?, valvula = ?, motor = ?, controle_temperatura = ?, controle_umidade = ?, controle_consumo = ? WHERE id_jardim = ? AND id_area = ?\";\nvar updateValues = [\n    dados.automatico,\n    dados.valvula,\n    dados.motor,\n    dados.controle_temperatura,\n    dados.controle_umidade,\n    dados.controle_consumo,\n    dados.id_jardim,\n    dados.id_area\n];\n\n// Define a consulta SQL e os valores no objeto de mensagem\nmsg.topic = updateQuery;\nmsg.payload = updateValues;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1890,
+        "y": 200,
+        "wires": [
+            [
+                "cb21b25e3b364600"
+            ]
+        ]
+    },
+    {
+        "id": "472cbac6031bf291",
+        "type": "mqtt in",
+        "z": "bcfee132b0371b4f",
+        "name": "mqtt_in_historico0",
+        "topic": "irrigacao/dispositivo/#",
+        "qos": "1",
+        "datatype": "json",
+        "broker": "15ee646fec09b039",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1150,
+        "y": 340,
+        "wires": [
+            [
+                "30238b6424ef768b"
+            ]
+        ]
+    },
+    {
+        "id": "30238b6424ef768b",
+        "type": "function",
+        "z": "bcfee132b0371b4f",
+        "name": "funcao_historico",
+        "func": "// Recebe os dados diretamente do payload da mensagem MQTT\nvar dadosSimulados = msg.payload;\n\n//Se msg.payload não for um array, cria um array com um único elemento (os dados simulados)\nif (!Array.isArray(msg.payload)) {\n    msg.payload = [dadosSimulados];\n} else {\n    // Se msg.payload já for um array, adiciona os dados simulados ao final do array\n    msg.payload.push(dadosSimulados);\n}\n\n// Constrói o ponto de dados para inserção no InfluxDB\nvar influxDataArray = msg.payload.map(function (dados) {\n    return {\n        measurement: 'irrigacao',\n        fields: {\n            temperatura: dados.temperatura,\n            umidade_ar: dados.umidade_ar,\n            umidade_solo: dados.umidade_solo,\n            consumo_agua: dados.consumo_agua,\n            valvula: dados.valvula,\n            motor: dados.motor\n        },\n        tags: {\n            id_jardim: dados.id_jardim,\n            id_area: dados.id_area\n        }\n    };\n});\n\n// Define o array de pontos de dados no objeto de mensagem\nmsg.payload = influxDataArray;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1460,
+        "y": 340,
+        "wires": [
+            [
+                "c62b7e3192e5218d"
+            ]
+        ]
+    },
+    {
+        "id": "c62b7e3192e5218d",
+        "type": "influxdb batch",
+        "z": "bcfee132b0371b4f",
+        "influxdb": "63aa6999b6a53a83",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "influxDB_historico",
+        "database": "database",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "FATEC",
+        "bucket": "irrigationIDB",
+        "x": 1770,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "15ee646fec09b039",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "tls": "dcd13daa0f09e977",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "verifyservercert": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "80ac14c058233964",
+        "type": "MySQLdatabase",
+        "name": "MariaDB",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "IrrigationDB",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "63aa6999b6a53a83",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "localhost",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://localhost:8086",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "dcd13daa0f09e977",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "069e98c65c96f054d35976123137e08658955f9b22966df9ba329fd1739fd2c3-certificate.pem.crt",
+        "keyname": "069e98c65c96f054d35976123137e08658955f9b22966df9ba329fd1739fd2c3-private.pem.key",
+        "caname": "AmazonRootCA1.pem",
+        "servername": "",
+        "verifyservercert": true,
+        "alpnprotocol": ""
+    }
+]

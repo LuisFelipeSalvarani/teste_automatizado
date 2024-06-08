@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Parâmetros de Irrigação</title>
+</head>
+<body>
+    <h1>Teste: Parâmetros</h1>
+    <form id="formulario">
+        <!-- Campos do formulário -->
+        <label for="id_jardim">ID do Jardim:</label><br>
+        <input type="text" id="id_jardim" name="id_jardim"><br>
+        <label for="id_area">ID da Área:</label><br>
+        <input type="text" id="id_area" name="id_area"><br><br>
+
+        <!-- Outros campos do formulário -->
+        <label for="horario_inicio">Horário de Início:</label><br>
+        <input type="time" id="horario_inicio" name="horario_inicio"><br>
+        <label for="duracao">Duração:</label><br>
+        <input type="time" id="duracao" name="duracao"><br>
+        <label for="dias_semana">Dias da Semana:</label><br>
+        <input type="text" id="dias_semana" name="dias_semana"><br>
+        <label for="setpointUmidade">Setpoint de Umidade:</label><br>
+        <input type="number" id="setpointUmidade" name="setpointUmidade"><br>
+        <label for="limite_superior_umidade">Limite Superior de Umidade:</label><br>
+        <input type="number" id="limite_superior_umidade" name="limite_superior_umidade"><br>
+        <label for="limite_inferior_umidade">Limite Inferior de Umidade:</label><br>
+        <input type="number" id="limite_inferior_umidade" name="limite_inferior_umidade"><br>
+        <label for="limite_superior_temperatura">Limite Superior de Temperatura:</label><br>
+        <input type="number" id="limite_superior_temperatura" name="limite_superior_temperatura"><br>
+        <label for="limite_inferior_temperatura">Limite Inferior de Temperatura:</label><br>
+        <input type="number" id="limite_inferior_temperatura" name="limite_inferior_temperatura"><br>
+        <label for="idTipoPlanta">ID do Tipo de Planta:</label><br>
+        <input type="text" id="idTipoPlanta" name="idTipoPlanta"><br>
+        <label for="id_tipo_irrigacao">ID do Tipo de Irrigação:</label><br>
+        <input type="text" id="id_tipo_irrigacao" name="id_tipo_irrigacao"><br><br>
+        <!-- Botão de Envio -->
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        document.getElementById("formulario").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evita o comportamento padrão de enviar o formulário
+
+            // Construir a URL com base nos valores dos campos
+            var id_jardim = document.getElementById('id_jardim').value;
+            var id_area = document.getElementById('id_area').value;
+            var url = `http://192.168.0.112:1880/irrigacao/parametro/${id_jardim}/${id_area}`;
+
+            // Construir o objeto de dados com as informações do formulário
+            var jsonData = {
+                descricao: "Parâmetros do Sistema",
+                id_jardim: document.getElementById('id_jardim').value,
+                id_area: document.getElementById('id_area').value,
+                horario_inicio: document.getElementById('horario_inicio').value,
+                duracao: document.getElementById('duracao').value,
+                dias_semana: document.getElementById('dias_semana').value,
+                setpoint_umidade: document.getElementById('setpointUmidade').value,
+                limite_superior_umidade: document.getElementById('limite_superior_umidade').value,
+                limite_inferior_umidade: document.getElementById('limite_inferior_umidade').value,
+                limite_superior_temperatura: document.getElementById('limite_superior_temperatura').value,
+                limite_inferior_temperatura: document.getElementById('limite_inferior_temperatura').value,
+                id_tipo_planta: document.getElementById('idTipoPlanta').value,
+                id_tipo_irrigacao: document.getElementById('id_tipo_irrigacao').value
+            };
+
+            // Enviar os dados do formulário via fetch com método PUT
+            fetch(url, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(jsonData)
+            });
+        });
+    </script>
+</body>
+</html>

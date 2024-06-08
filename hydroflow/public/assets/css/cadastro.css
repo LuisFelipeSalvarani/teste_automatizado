@@ -1,0 +1,344 @@
+.content .register {
+    width: calc(100% - 20px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.register .form-group {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.register .form-group.checkbox {
+    flex-direction: column;
+    gap: 0;
+}
+
+.register .form-group.checkbox .input-field {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 5px 0;
+}
+
+.register .form-group .input-field {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-bottom: 10px;
+}
+
+.register .form-group .input-field .duplo-select {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.register .form-group .input-field .duplo-select .input {
+    flex-grow: 1;
+}
+
+.register .form-group .input-field.flex-2 {
+    flex-grow: 2;
+}
+
+.register .form-group .input-field.flex-3 {
+    flex-grow: 3;
+}
+
+.register .form-group .input-field.flex-5 {
+    flex-grow: 5;
+}
+
+.register .form-group .input-field.flex-10 {
+    flex-grow: 10;
+}
+
+.form-group .input-field label {
+    margin: 0 0 5px 5px;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    color: var(--verde-claro);
+}
+
+.form-group.checkbox .input-field label {
+    padding-top: 5px;
+}
+
+.form-group .input-field .input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group .input-field .input.textarea {
+    height: 100%;
+}
+
+.form-group .input-field .input.checkbox {
+    position: relative;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--branco);
+    border-radius: 5px;
+    background: var(--branco);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.form-group .input-field .input.checkbox:hover {
+    border-color: var(--branco);
+}
+
+.form-group .input-field .input.checkbox:checked {
+    background: var(--verde-claro);
+    border-color: transparent;
+}
+
+.form-group .input-field .input.checkbox::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    box-shadow: 0px 0px 0px calc(20px / 2.5) var(--verde-claro);
+    transition: all 0.5s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+    opacity: 0;
+}
+
+.form-group .input-field .input.checkbox:active:not(:checked)::after {
+    transition: none;
+    box-shadow: none;
+    opacity: 1;
+}
+
+.form-group .input-field .input.checkbox::before {
+    content: "";
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 4px;
+    height: 7px;
+    border-right: 2px solid var(--branco);
+    border-bottom: 2px solid var(--branco);
+    transform: translate(-50%, -50%) rotate(45deg) scale(0);
+    transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6), opacity 0.1s;
+}
+
+.form-group .input-field .input.checkbox:checked::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(45deg) scale(1.2);
+    transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+}
+
+.main .form-group .input-field .input.invalid {
+    border: 2px solid var(--vermelho);
+}
+
+.input-field:has(.input.invalid) {
+    margin-bottom: 0;
+}
+
+.form-group .input-field .input:focus {
+    transform: scale(1.01);
+}
+
+.form-group .input-field .input::placeholder {
+    color: var(--preto);
+}
+
+.form-group .input-field .input:disabled,
+.form-group .input-field .input[readonly]{
+    background-color: transparent;
+    color: var(--branco);
+    opacity: 0.7;
+    font-size: 20px;
+    padding: 0;
+    padding-left: 10px;
+    margin-bottom: 5px;
+}
+
+.form-group .input-field .input[readonly] {
+    cursor: default;
+    user-select: none;
+}
+
+.form-group .input-field.disabled {
+    flex-direction: row;
+    align-items: center;
+}
+
+.main .btn-add {
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    color: var(--preto);
+    padding: 5px 0;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+    background: var(--branco);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.main .content .btn-add:hover {
+    transform: scale(1.01);
+}
+
+.btn-box {
+    display: flex;
+    align-self: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.main .content .btn-register {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0 15px 5px;
+    gap: 10px;
+    align-self: flex-start;
+    font-size: 22px;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--preto);
+    padding: 10px 0;
+    border-radius: 5px;
+    border: none;
+    background: var(--verde-claro);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.main .content .btn-register:hover {
+    transform: scale(1.05);
+}
+
+.content .btn-register.cancel {
+    background-color: var(--vermelho);
+}
+
+.content .btn-register.gravar {
+    background-color: var(--azul-claro);
+}
+
+.content .btn-register.trash {
+    background-color: var(--vermelho);
+    width: fit-content;
+    padding-inline: 10px;
+    margin-block: auto;
+}
+
+.content .container-buttons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 15px;
+}
+
+.invalid-feedback {
+    font-family: "Poppins", sans-serif;
+    margin-top: 3px;
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--vermelho);
+}
+
+.form-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    margin: 0 0 25px 0;
+}
+
+.form-box .coluna-1 {
+    flex: 4;
+}
+
+.form-box .coluna-2 {
+    flex: 1;
+    padding-top: 30px;
+    padding-right: 15px;
+}
+
+.items {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    margin-bottom: 10px;
+    padding-right: 5px;
+}
+
+.item-row {
+    width: 100%;
+    background-color: var(--branco);
+    display: flex;
+    padding: 5px 0;
+    margin-top: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    color: var(--azul-escuro);
+}
+
+.item-row:hover {
+    transform: scale(1.01);
+}
+
+.item-row .item {
+    background-color: var(--verde-claro);
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.item-cell {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--preto);
+}
+
+.item-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    background-color: var(--verde-claro);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.item-cell.id {
+    flex: 0.5;
+}
+
+.item-cell.descricao {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    padding-top: 15px;
+}
